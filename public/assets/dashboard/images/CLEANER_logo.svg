@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1538" height="206" viewBox="0 0 1538 206">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 262.5px;
+        fill: #fff;
+        font-family: "Khmer UI";
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <text id="C" class="cls-1" x="10.75" y="194.5">C</text>
+  <text id="L" class="cls-1" x="263.75" y="194.5">L</text>
+  <text id="E" class="cls-1" x="451.751" y="194.5">E</text>
+  <text id="A" class="cls-1" x="667.75" y="194.5">A</text>
+  <text id="N" class="cls-1" x="908.75" y="194.5">N</text>
+  <text id="E-2" data-name="E" class="cls-1" x="1169.751" y="194.5">E</text>
+  <text id="R" class="cls-1" x="1362.75" y="194.5">R</text>
+</svg>
