@@ -51,7 +51,7 @@ class BlogController extends Controller
         }
         Blog::create($input);
         return redirect()->route('blog.index')
-            ->with('success','Service created successfully.');
+            ->with('success','Blog created successfully.');
     }
 
     /**
@@ -95,7 +95,7 @@ class BlogController extends Controller
         }
         $blog->update($input);
         return redirect()->back()
-            ->with('success','Service update successfully.');
+            ->with('success','Blog update successfully.');
     }
 
     /**
@@ -108,6 +108,6 @@ class BlogController extends Controller
     {
         $blog->delete();
         return redirect()->back()
-            ->with('success','deleted successfully');
+            ->with('error','Blog deleted successfully');
     }
 }

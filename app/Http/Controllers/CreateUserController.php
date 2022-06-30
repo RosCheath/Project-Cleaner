@@ -134,6 +134,6 @@ class CreateUserController extends Controller
     {
         $user->delete();
         return redirect()->back()
-            ->with('success','User deleted successfully');
+            ->with('error','deleted successfully');
     }
 }

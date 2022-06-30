@@ -111,6 +111,6 @@ class ServiceController extends Controller
     {
         $service->delete();
         return redirect()->back()
-            ->with('success','Cleaner deleted successfully');
+            ->with('error','deleted successfully');
     }
 }

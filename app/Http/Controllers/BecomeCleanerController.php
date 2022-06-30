@@ -45,7 +45,7 @@ class BecomeCleanerController extends Controller
         $input = $request->all();
         BecomCleaners::create($input);
         return redirect()->back()
-            ->with('success','Cleaner created successfully.');
+            ->with('success','created successfully.');
     }
 
     /**
@@ -97,7 +97,7 @@ class BecomeCleanerController extends Controller
     {
         $becom_cleaner->delete();
         return redirect()->back()
-            ->with('success','Cleaner deleted successfully');
+            ->with('error','deleted successfully');
     }
 
 }

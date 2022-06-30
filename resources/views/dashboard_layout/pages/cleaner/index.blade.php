@@ -3,7 +3,7 @@
     <!-- partial -->
     <div class="main-panel">
         <div class="content-wrapper">
-            <div class="page-header">z
+            <div class="page-header">
                 <h3 class="page-title"><a class="btn btn-primary" href="{{route('admin-cleaner.create')}}"> Create Cleaner </a></h3>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -21,7 +21,7 @@
 
                             <div class="input-group">
                                 <div class="form-outline" >
-                                    <input type="search" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for names.." />
+                                    <input type="search" id="myInput11" onkeyup="myFunction1()" class="form-control" placeholder="Search for names.." />
                                 </div>
                             </div>
 
@@ -86,9 +86,9 @@
 @endsection
 
 <script>
-    function myFunction() {
+    function myFunction1() {
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
+        input = document.getElementById("myInput11");
         filter = input.value.toUpperCase();
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");

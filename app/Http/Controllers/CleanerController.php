@@ -131,6 +131,6 @@ class CleanerController extends Controller
     {
         $cleaner->delete();
         return redirect()->back()
-            ->with('error','Cleaner deleted successfully');
+            ->with('error','deleted successfully');
     }
 }

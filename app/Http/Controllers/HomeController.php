@@ -67,9 +67,4 @@ class HomeController extends Controller
         $bookingCount = Booking::where('user_id','=',Auth::id())->where('status_type','=','Pending')->count();
         return view('home_layouts.about',compact('bookingCount','aboutimage'));
     }
-//    public function gallery()
-//    {
-//        $bookingCount = Booking::where('user_id','=',Auth::id())->where('status_type','=','Pending')->count();
-//        return view('home_layouts.gallery',compact('bookingCount'));
-//    }
 }

@@ -79,7 +79,7 @@ class DashboardController extends Controller
         Mail::to($pending->user->email)->queue(new ApprovedMail($mailData));
         Mail::to($to)->queue(new ApprovedMail($mailData));
         return redirect()->route('pending')
-            ->with('success','Cleaner updated successfully');
+            ->with('success','Approved booking successfully');
     }
 
     public function approved()

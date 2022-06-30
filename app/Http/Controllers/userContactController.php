@@ -29,7 +29,7 @@ class userContactController extends Controller
         Mail::to('admin@gamil.com')->queue(new ContactMail($mailData));
         Mail::to($send2user)->queue(new ContactMail($mailData));
 
-        return redirect()->back();
+        return redirect()->back()->with('info','Your Contact has been send!!.');;
 
     }
 }

@@ -56,7 +56,7 @@ class BookingController extends Controller
         Mail::to('admin@gamil.com')->queue(new BookingMail($mailData));
         Mail::to($booking->user->email)->queue(new BookingMail($mailData));
         return redirect()->back()
-            ->with('success','Cleaner created successfully.');
+            ->with('success','Booking created successfully.');
     }
 
 
@@ -68,7 +68,7 @@ class BookingController extends Controller
         $input = $request->all();
         $booking->save($input);
         return redirect()->route('pending')
-            ->with('success','Cleaner updated successfully');
+            ->with('success','Booking updated successfully');
     }
 
 
