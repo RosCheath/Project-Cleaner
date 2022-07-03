@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('price');
             $table->string('time_line');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

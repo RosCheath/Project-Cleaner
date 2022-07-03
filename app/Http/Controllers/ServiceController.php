@@ -17,10 +17,11 @@ class ServiceController extends Controller
      */
     public function index()
     {
+        $onlySoftDeleted = Service::onlyTrashed()->get();
         $message = Contact::latest()->paginate(3);
         $service = Service::get();
         $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-        return view('dashboard_layout.pages.service.index',compact('service','noti','message'));
+        return view('dashboard_layout.pages.service.index',compact('service','noti','message','onlySoftDeleted'));
     }
 
     /**

@@ -41,11 +41,49 @@
                 </div>
                 @endforeach
             </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer -->
-{{--        @include('dashboard_layout.partials._footer')--}}
-        <!-- partial -->
 
-    <!-- main-panel ends -->
+            <div class="row ">
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Soft Delete</h4>
+                            {{--                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">--}}
 
+                            <div class="input-group">
+                                <div class="form-outline" >
+                                    <input type="search" id="myInput11" onkeyup="myFunction1()" class="form-control" placeholder="Search for names.." />
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table" id="myTable">
+                                    <thead>
+                                    <tr>
+                                        <th> Image </th>
+                                        <th> Name </th>
+                                        <th> Price </th>
+                                        <th> Edit </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($onlySoftDeleted as $SoftDeleted)
+                                        <tr>
+                                            <td>
+                                                <img src="{{ $SoftDeleted->image}}" />
+                                            </td>
+                                            <td> {{$SoftDeleted->name}} </td>
+                                            <td> {{$SoftDeleted->price}} </td>
+
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 @endsection
