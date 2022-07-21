@@ -18,9 +18,10 @@ class ImageHeadsController extends Controller
     public function index()
     {
         $message = Contact::latest()->paginate(3);
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
         $image_head = ImageHeads::get();
-        return view('image_head.index',compact('image_head','noti','message'));
+
+        return view('image_head.index', compact('image_head', 'noti', 'message'));
     }
 
     /**
@@ -31,8 +32,9 @@ class ImageHeadsController extends Controller
     public function edit(ImageHeads $image_head)
     {
         $message = Contact::latest()->paginate(3);
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-        return view('image_head.edit',compact('image_head','noti','message'));
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
+
+        return view('image_head.edit', compact('image_head', 'noti', 'message'));
     }
 
     /**
@@ -42,16 +44,17 @@ class ImageHeadsController extends Controller
      * @param  \App\Models\ImageHeads  $image_head
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request,ImageHeads $image_head)
+    public function update(Request $request, ImageHeads $image_head)
     {
         $input = $request->all();
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $path = Storage::disk('s3')->put('Image Heads', $request->image);
             $path = Storage::disk('s3')->url($path);
             $input['image'] = $path;
         }
         $image_head->update($input);
+
         return redirect()->route('image-head.index')
-            ->with('success','Image updated successfully');
+            ->with('success', 'Image updated successfully');
     }
 }

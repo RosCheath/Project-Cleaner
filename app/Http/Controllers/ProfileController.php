@@ -12,12 +12,15 @@ class ProfileController extends Controller
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $profile = User::get();
-        return view('profile.v_profile',compact('profile'));
+
+        return view('profile.v_profile', compact('profile'));
     }
+
     public function edit(User $profile)
     {
-        return view('profile.edit_profile',compact('profile'));
+        return view('profile.edit_profile', compact('profile'));
     }
+
     public function update(Request $request)
     {
         $this->validate(request(), [
@@ -25,19 +28,20 @@ class ProfileController extends Controller
             'phone' => 'required',
             'date_of_birth' => 'required',
             'email' => 'required',
-//            'id_card' => ['required'],
+            //            'id_card' => ['required'],
             'role' => 'required',
             'sex' => 'required',
         ]);
 
         $input = $request->all();
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $path = Storage::disk('s3')->put('User/image', $request->image);
             $path = Storage::disk('s3')->url($path);
             $input['image'] = $path;
         }
         Auth::User()->update($input);
+
         return redirect()->back()
-            ->with('success','Profile updated successfully');
+            ->with('success', 'Profile updated successfully');
     }
 }

@@ -16,7 +16,9 @@ class ContactMail extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public array $contact_mail){}
+    public function __construct(public array $contact_mail)
+    {
+    }
 
     /**
      * Build the message.
@@ -25,7 +27,7 @@ class ContactMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('mail.contact_mail',[
+        return $this->view('mail.contact_mail', [
             'name' => $this->contact_mail['name'],
             'email' => $this->contact_mail['email'],
             'telegram' => $this->contact_mail['telegram'],

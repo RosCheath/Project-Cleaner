@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
+
     public $fillable = [
-        'to','name','email','phone','message','is_success'
+        'to', 'name', 'email', 'phone', 'message', 'is_success',
     ];
 
     public $casts = [
-      'is_success' => 'boolean'
+        'is_success' => 'boolean',
     ];
 }

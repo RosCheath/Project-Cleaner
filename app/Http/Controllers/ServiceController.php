@@ -20,8 +20,9 @@ class ServiceController extends Controller
         $onlySoftDeleted = Service::onlyTrashed()->get();
         $message = Contact::latest()->paginate(3);
         $service = Service::get();
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-        return view('dashboard_layout.pages.service.index',compact('service','noti','message','onlySoftDeleted'));
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
+
+        return view('dashboard_layout.pages.service.index', compact('service', 'noti', 'message', 'onlySoftDeleted'));
     }
 
     /**
@@ -33,8 +34,9 @@ class ServiceController extends Controller
     {
         $message = Contact::latest()->paginate(3);
         $service = Service::get();
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-        return view('dashboard_layout.pages.service.create',compact('service','noti','message'));
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
+
+        return view('dashboard_layout.pages.service.create', compact('service', 'noti', 'message'));
     }
 
     /**
@@ -46,14 +48,15 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $path = Storage::disk('s3')->put('Service/image', $request->image);
             $path = Storage::disk('s3')->url($path);
             $input['image'] = $path;
         }
         service::create($input);
+
         return redirect()->route('service.index')
-            ->with('success','Service created successfully.');
+            ->with('success', 'Service created successfully.');
     }
 
     /**
@@ -65,8 +68,9 @@ class ServiceController extends Controller
     public function show(service $service)
     {
         $message = Contact::latest()->paginate(3);
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-        return view('dashboard_layout.pages.service.show',compact('service','noti','message'));
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
+
+        return view('dashboard_layout.pages.service.show', compact('service', 'noti', 'message'));
     }
 
     /**
@@ -78,8 +82,9 @@ class ServiceController extends Controller
     public function edit(service $service)
     {
         $message = Contact::latest()->paginate(3);
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-        return view('dashboard_layout.pages.service.edit',compact('service','noti','message'));
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
+
+        return view('dashboard_layout.pages.service.edit', compact('service', 'noti', 'message'));
     }
 
     /**
@@ -92,14 +97,15 @@ class ServiceController extends Controller
     public function update(Request $request, service $service)
     {
         $input = $request->all();
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $path = Storage::disk('s3')->put('Service/image', $request->image);
             $path = Storage::disk('s3')->url($path);
             $input['image'] = $path;
         }
         $service->update($input);
+
         return redirect()->back()
-            ->with('success','Service update successfully.');
+            ->with('success', 'Service update successfully.');
     }
 
     /**
@@ -111,7 +117,15 @@ class ServiceController extends Controller
     public function destroy(service $service)
     {
         $service->delete();
+
         return redirect()->back()
-            ->with('error','deleted successfully');
+            ->with('error', 'deleted successfully');
+    }
+
+    public function restore($id)
+    {
+        Service::withTrashed()->find($id)->restore();
+
+        return redirect()->back()->with('success', 'Restore successfully');
     }
 }

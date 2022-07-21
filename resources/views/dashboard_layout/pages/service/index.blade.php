@@ -75,7 +75,7 @@
                                             <td> {{$SoftDeleted->price}} </td>
 
                                             <td>
-
+                                                <a href="{{ route('service.restore', $SoftDeleted->id) }}" class="btn btn-success">Restore</a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ImageHeads extends Model
 {
     use HasFactory;
+
     public $fillable = [
-        'name','image',
+        'name', 'image',
     ];
 }

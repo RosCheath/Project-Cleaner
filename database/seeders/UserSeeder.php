@@ -17,8 +17,8 @@ class UserSeeder extends Seeder
     {
         $userData = config('setting.users');
         foreach ($userData as $data) {
-            $user = User::where('email','=' ,$data['email'])->first();
-            if(empty($user)){
+            $user = User::where('email', '=', $data['email'])->first();
+            if (empty($user)) {
                 $data['password'] = Hash::make($data['password']);
                 User::create($data);
             }

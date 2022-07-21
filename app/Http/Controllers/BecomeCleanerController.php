@@ -16,10 +16,11 @@ class BecomeCleanerController extends Controller
      */
     public function index()
     {
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
         $message = Contact::latest()->paginate(3);
         $becom_cleaner = BecomCleaners::latest()->paginate(20);
-        return view('become_cleaner.index',compact('becom_cleaner','noti','message'));
+
+        return view('become_cleaner.index', compact('becom_cleaner', 'noti', 'message'));
     }
 
     /**
@@ -30,8 +31,9 @@ class BecomeCleanerController extends Controller
     public function create()
     {
         $message = Contact::latest()->paginate(3);
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-        return view('become_cleaner.create',compact('noti','message'));
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
+
+        return view('become_cleaner.create', compact('noti', 'message'));
     }
 
     /**
@@ -44,8 +46,9 @@ class BecomeCleanerController extends Controller
     {
         $input = $request->all();
         BecomCleaners::create($input);
+
         return redirect()->back()
-            ->with('success','created successfully.');
+            ->with('success', 'created successfully.');
     }
 
     /**
@@ -68,8 +71,9 @@ class BecomeCleanerController extends Controller
     public function edit(BecomCleaners $becom_cleaner)
     {
         $message = Contact::latest()->paginate(3);
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-        return view('become_cleaner.edit',compact('becom_cleaner','noti','message'));
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
+
+        return view('become_cleaner.edit', compact('becom_cleaner', 'noti', 'message'));
     }
 
     /**
@@ -83,8 +87,9 @@ class BecomeCleanerController extends Controller
     {
         $input = $request->all();
         $becom_cleaner->update($input);
+
         return redirect()->back()
-            ->with('success','updated successfully');
+            ->with('success', 'updated successfully');
     }
 
     /**
@@ -96,8 +101,8 @@ class BecomeCleanerController extends Controller
     public function destroy(BecomCleaners $becom_cleaner)
     {
         $becom_cleaner->delete();
-        return redirect()->back()
-            ->with('error','deleted successfully');
-    }
 
+        return redirect()->back()
+            ->with('error', 'deleted successfully');
+    }
 }

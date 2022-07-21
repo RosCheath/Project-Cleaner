@@ -10,7 +10,6 @@ class BookingPolicy
 {
     use HandlesAuthorization;
 
-
     /**
      * Determine whether the user can view the model.
      *
@@ -20,17 +19,19 @@ class BookingPolicy
      */
     public function view(User $user, Booking $booking)
     {
-        return $user->id ===$booking->user_id;
+        return $user->id === $booking->user_id;
     }
 
     public function admin_view(User $user, Booking $booking)
     {
         return $user->role === 'Admin' || $user->id === $booking->user_id;
     }
+
     public function cleaner_view(User $user, Booking $booking)
     {
         return $user->role === 'Admin' || $user->id === $booking->cleaner_id;
     }
+
     /**
      * Determine whether the user can create models.
      *

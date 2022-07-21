@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\BecomCleaners;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
 class BecomCleanerSeeder extends Seeder
 {
     /**
@@ -16,8 +16,8 @@ class BecomCleanerSeeder extends Seeder
     {
         $BecomData = config('setting.Becom_Cleaner');
         foreach ($BecomData as $data) {
-            $becom_cleaner = BecomCleaners::where('name','=',$data['name'])->first();
-            if (empty($becom_cleaner)){
+            $becom_cleaner = BecomCleaners::where('name', '=', $data['name'])->first();
+            if (empty($becom_cleaner)) {
                 BecomCleaners::create($data);
             }
         }

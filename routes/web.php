@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\BecomeCleanerController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
@@ -8,11 +7,9 @@ use App\Http\Controllers\CreateUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImageHeadsController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\CleanerController;
 use App\Http\Controllers\userContactController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-Route::group(['web'],function(){
+Route::group(['web'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/services', [App\Http\Controllers\HomeController::class, 'services'])->name('services');
     Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
@@ -36,19 +33,14 @@ Route::group(['web'],function(){
     Route::resource('booking', BookingController::class);
     Route::get('invoice/{booking}', [App\Http\Controllers\BookingController::class, 'invoice'])->name('invoice');
     Route::post('/contacts', [userContactController::class, 'contacts'])->name('user.contacts');
-
-
-
 });
 
-Route::group(['web','middleware' => 'can:user-feature'],function(){
-
+Route::group(['web', 'middleware' => 'can:user-feature'], function () {
     Route::put('update/profile/', [App\Http\Controllers\ProfileController::class, 'update'])->name('update_profile');
     Route::get('edit/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('edit_profile');
-
 });
 
-Route::group(['web','middleware' => 'can:admin_auth'],function(){
+Route::group(['web', 'middleware' => 'can:admin_auth'], function () {
     Route::resource('service', ServiceController::class);
     Route::resource('users', CreateUserController::class);
     Route::resource('admin-cleaner', App\Http\Controllers\CleanerController::class);
@@ -56,9 +48,11 @@ Route::group(['web','middleware' => 'can:admin_auth'],function(){
     Route::resource('becom-cleaner', App\Http\Controllers\BecomeCleanerController::class);
     Route::resource('blog', BlogController::class);
     Route::resource('contact-admin', ContactController::class);
+
+    Route::get('service/restore/{id}', [ServiceController::class, 'restore'])->name('service.restore');
 });
 
-Route::group(['web','middleware' => 'can:admin-feature'],function(){
+Route::group(['web', 'middleware' => 'can:admin-feature'], function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'home_d'])->name('dashboard');
     Route::resource('pending', DashboardController::class);

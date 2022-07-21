@@ -20,10 +20,11 @@ class CleanerController extends Controller
     {
         $message = Contact::latest()->paginate(3);
         $cleaner = User::with('roles')->where('role', 'Cleaner')->latest()->paginate(15);
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-            return view('dashboard_layout.pages.cleaner.index',compact('cleaner','noti','message'));
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
 
+        return view('dashboard_layout.pages.cleaner.index', compact('cleaner', 'noti', 'message'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -32,8 +33,9 @@ class CleanerController extends Controller
     public function create()
     {
         $message = Contact::latest()->paginate(3);
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-        return view('dashboard_layout.pages.cleaner.create',compact('noti','message'));
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
+
+        return view('dashboard_layout.pages.cleaner.create', compact('noti', 'message'));
     }
 
     /**
@@ -57,16 +59,16 @@ class CleanerController extends Controller
 
         $input = $request->all();
         $input['password'] = Hash::make($request['password']);
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $path = Storage::disk('s3')->put('Cleaner/image', $request->image);
             $path = Storage::disk('s3')->url($path);
             $input['image'] = $path;
         }
         User::create($input);
-        return redirect()->back()
-            ->with('success','Cleaner created successfully.');
-    }
 
+        return redirect()->back()
+            ->with('success', 'Cleaner created successfully.');
+    }
 
     /**
      * Display the specified resource.
@@ -88,8 +90,9 @@ class CleanerController extends Controller
     public function edit(User $admin_cleaner)
     {
         $message = Contact::latest()->paginate(3);
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-        return view('dashboard_layout.pages.cleaner.edit',compact('admin_cleaner','noti','message'));
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
+
+        return view('dashboard_layout.pages.cleaner.edit', compact('admin_cleaner', 'noti', 'message'));
     }
 
     /**
@@ -111,14 +114,15 @@ class CleanerController extends Controller
 //        ]);
 
         $input = $request->all();
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $path = Storage::disk('s3')->put('Cleaner/image', $request->image);
             $path = Storage::disk('s3')->url($path);
             $input['image'] = $path;
         }
         $admin_cleaner->update($input);
+
         return redirect()->back()
-            ->with('success','Cleaner updated successfully');
+            ->with('success', 'Cleaner updated successfully');
     }
 
     /**
@@ -130,7 +134,8 @@ class CleanerController extends Controller
     public function destroy(User $cleaner)
     {
         $cleaner->delete();
+
         return redirect()->back()
-            ->with('error','deleted successfully');
+            ->with('error', 'deleted successfully');
     }
 }

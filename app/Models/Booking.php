@@ -8,19 +8,28 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     use HasFactory;
+
     public $fillable = [
-        'service_id','user_id','location','telegram','status_type','cleaner_id'
+        'service_id', 'user_id', 'location', 'telegram', 'status_type', 'cleaner_id',
     ];
-    public function service(){
+
+    public function service()
+    {
         return $this->belongsTo(Service::class);
     }
-    public function user(){
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-    public function statuses(){
+
+    public function statuses()
+    {
         return $this->belongsTo(Status::class);
     }
-    public function cleaner(){
+
+    public function cleaner()
+    {
         return $this->belongsTo(User::class);
     }
 }

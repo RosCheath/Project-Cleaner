@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class BecomCleaners extends Model
 {
     use HasFactory;
+
     public $fillable = [
-        'name','price','title1','title2','title3','title4',
+        'name', 'price', 'title1', 'title2', 'title3', 'title4',
     ];
 }

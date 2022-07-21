@@ -26,5 +26,4 @@ class UserPolicy
     {
         return $user->role === 'Admin' || $user->id === $booking->cleaner_id;
     }
-
 }

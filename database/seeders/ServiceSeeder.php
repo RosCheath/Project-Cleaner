@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\service;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ServiceSeeder extends Seeder
@@ -17,7 +16,7 @@ class ServiceSeeder extends Seeder
     {
         $serviceData = config('setting.services');
         foreach ($serviceData as $data) {
-                service::create($data);
+            service::create($data);
         }
     }
 }

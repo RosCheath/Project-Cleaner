@@ -16,7 +16,9 @@ class BookingMail extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public array $bookin_mail){}
+    public function __construct(public array $bookin_mail)
+    {
+    }
 
     /**
      * Build the message.
@@ -25,7 +27,7 @@ class BookingMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('mail.booking_mail',[
+        return $this->view('mail.booking_mail', [
             'user' => $this->bookin_mail['user'],
             'location' => $this->bookin_mail['location'],
             'telegram' => $this->bookin_mail['telegram'],

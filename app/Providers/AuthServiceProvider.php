@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Models\Booking;
 use App\Models\User;
 use App\Policies\BookingPolicy;
-use App\Policies\DashBookingPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -33,18 +32,17 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('admin-feature', static function(User $user){
+        Gate::define('admin-feature', static function (User $user) {
             return $user->role === 'Admin' || $user->role === 'Cleaner';
         });
-        Gate::define('user-feature', static function(User $user){
+        Gate::define('user-feature', static function (User $user) {
             return $user->role === 'User';
         });
-        Gate::define('admin_auth', static function(User $user){
+        Gate::define('admin_auth', static function (User $user) {
             return $user->role === 'Admin';
         });
-        Gate::define('cleaner_auth', static function(User $user){
+        Gate::define('cleaner_auth', static function (User $user) {
             return $user->role === 'Cleaner';
         });
-
     }
 }

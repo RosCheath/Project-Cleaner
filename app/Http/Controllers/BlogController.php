@@ -19,8 +19,9 @@ class BlogController extends Controller
     {
         $blog = Blog::get();
         $message = Contact::latest()->paginate(3);
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-        return view('dashboard_layout.pages.blog.index',compact('blog','noti','message'));
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
+
+        return view('dashboard_layout.pages.blog.index', compact('blog', 'noti', 'message'));
     }
 
     /**
@@ -31,8 +32,9 @@ class BlogController extends Controller
     public function create()
     {
         $message = Contact::latest()->paginate(3);
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-        return view('dashboard_layout.pages.blog.create',compact('noti','message'));
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
+
+        return view('dashboard_layout.pages.blog.create', compact('noti', 'message'));
     }
 
     /**
@@ -44,14 +46,15 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $path = Storage::disk('s3')->put('Blog', $request->image);
             $path = Storage::disk('s3')->url($path);
             $input['image'] = $path;
         }
         Blog::create($input);
+
         return redirect()->route('blog.index')
-            ->with('success','Blog created successfully.');
+            ->with('success', 'Blog created successfully.');
     }
 
     /**
@@ -74,8 +77,9 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         $message = Contact::latest()->paginate(3);
-        $noti = Booking::where('status_type','=','Pending')->latest()->paginate(3);
-        return view('dashboard_layout.pages.blog.edit',compact('blog','noti','message'));
+        $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
+
+        return view('dashboard_layout.pages.blog.edit', compact('blog', 'noti', 'message'));
     }
 
     /**
@@ -88,14 +92,15 @@ class BlogController extends Controller
     public function update(Request $request, Blog $blog)
     {
         $input = $request->all();
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $path = Storage::disk('s3')->put('Blog', $request->image);
             $path = Storage::disk('s3')->url($path);
             $input['image'] = $path;
         }
         $blog->update($input);
+
         return redirect()->back()
-            ->with('success','Blog update successfully.');
+            ->with('success', 'Blog update successfully.');
     }
 
     /**
@@ -107,7 +112,8 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         $blog->delete();
+
         return redirect()->back()
-            ->with('error','Blog deleted successfully');
+            ->with('error', 'Blog deleted successfully');
     }
 }

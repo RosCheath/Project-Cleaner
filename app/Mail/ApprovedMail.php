@@ -16,7 +16,9 @@ class ApprovedMail extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public array $approved_mail){}
+    public function __construct(public array $approved_mail)
+    {
+    }
 
     /**
      * Build the message.
@@ -25,7 +27,7 @@ class ApprovedMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('mail.approved_mail',[
+        return $this->view('mail.approved_mail', [
             'user' => $this->approved_mail['user'],
             'location' => $this->approved_mail['location'],
             'telegram' => $this->approved_mail['telegram'],

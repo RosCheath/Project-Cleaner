@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Mail\ContactMail;
 use App\Models\Contact;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ class userContactController extends Controller
 {
     public function contacts(Request $request)
     {
-        $contacts = New Contact();
+        $contacts = new Contact();
         $contacts->to = 'Admin@gmail.com';
         $contacts->name = $request->get('name');
         $contacts->email = $request->get('email');
@@ -24,12 +25,11 @@ class userContactController extends Controller
             'message' => $contacts->message,
         ];
         $send2user = [
-          'mail' => $contacts->email,
+            'mail' => $contacts->email,
         ];
         Mail::to('admin@gamil.com')->queue(new ContactMail($mailData));
         Mail::to($send2user)->queue(new ContactMail($mailData));
 
-        return redirect()->back()->with('info','Your Contact has been send!!.');;
-
+        return redirect()->back()->with('info', 'Your Contact has been send!!.');
     }
 }

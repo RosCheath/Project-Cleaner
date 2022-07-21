@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     use HasFactory;
+
     public $fillable = [
-        'name','title','image',
+        'name', 'title', 'image',
     ];
 }

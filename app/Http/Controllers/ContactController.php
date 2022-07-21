@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Contact;
-use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
@@ -18,7 +17,8 @@ class ContactController extends Controller
         $message = Contact::latest()->paginate(3);
         $contact_admin = Contact::latest()->paginate(20);
         $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
-        return view('dashboard_layout.pages.contacts.index', compact('contact_admin', 'noti','message'));
+
+        return view('dashboard_layout.pages.contacts.index', compact('contact_admin', 'noti', 'message'));
     }
 
     /**
@@ -31,7 +31,7 @@ class ContactController extends Controller
     {
         $message = Contact::latest()->paginate(3);
         $noti = Booking::where('status_type', '=', 'Pending')->latest()->paginate(3);
-        return view('dashboard_layout.pages.contacts.contact_show', compact('contact_admin','noti','message'));
-    }
 
+        return view('dashboard_layout.pages.contacts.contact_show', compact('contact_admin', 'noti', 'message'));
+    }
 }

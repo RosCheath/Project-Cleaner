@@ -10,8 +10,10 @@ class Service extends Model
 {
     use SoftDeletes;
     use HasFactory;
+
     protected $dates = ['deleted_at'];
+
     public $fillable = [
-        'name','title','image','price','time_line'
+        'name', 'title', 'image', 'price', 'time_line',
     ];
 }
