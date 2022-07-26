@@ -42,9 +42,6 @@
 	        	<li class="nav-item {{ (request()->is('services')) ? 'active' : '' }}">
                     <a href="services" class="nav-link">Services</a>
                 </li>
-{{--	        	<li class="nav-item {{ (request()->is('gallery')) ? 'active' : '' }}">--}}
-{{--                    <a href="gallery" class="nav-link">Gallery</a>--}}
-{{--                </li>--}}
 	        	<li class="nav-item {{ (request()->is('about')) ? 'active' : '' }}">
                     <a href="about" class="nav-link">About</a>
                 </li>
@@ -84,6 +81,10 @@
                     <li class="nav-item">
                         <a href="{{route('dashboard')}}" class="nav-link">Dashborad</a>
                     </li>
+
+                            <li class="nav-item {{ (request()->is('telescope')) ? 'active' : '' }}">
+                                <a href="{{url('telescope')}}" class="nav-link">Telescope</a>
+                            </li>
                     @endcan
                 @else
                     <li class="nav-item">
